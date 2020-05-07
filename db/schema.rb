@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2020_05_07_131330) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "nome_proprios", force: :cascade do |t|
     t.string "nome"
     t.string "genero"
