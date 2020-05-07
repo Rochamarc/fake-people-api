@@ -1,0 +1,2 @@
+class NomesController < ApplicationController
+end
