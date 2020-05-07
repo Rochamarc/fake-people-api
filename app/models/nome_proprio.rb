@@ -1,0 +1,2 @@
+class NomeProprio < ApplicationRecord
+end
