@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
-  resources :sobrenomes
+  resources :sobrenomes do 
+    collection do 
+      get 'category'
+    end
+  end
+  
   resources :nome_proprios do 
     collection do
       get 'category'

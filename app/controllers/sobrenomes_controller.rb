@@ -13,6 +13,12 @@ class SobrenomesController < ApplicationController
     render json: @sobrenome
   end
 
+  def category
+    @sobrenomes = Sobrenome.where(nacionalidade: params[:nacionalidade])
+    
+    render json: @sobrenomes.as_json(only: [:nome]) 
+  end
+
   # POST /sobrenomes
   def create
     @sobrenome = Sobrenome.new(sobrenome_params)
