@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+
+  resources :nome_aleatorio
+  
   resources :sobrenomes do 
     collection do 
       get 'category'
