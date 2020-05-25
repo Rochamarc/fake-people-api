@@ -7,7 +7,7 @@ class NomeAleatorioController < ApplicationController
         @nome = @nome_proprios.sample
         @sobrenome = @sobrenomes.sample 
 
-        @nome_completo = "#{@nome.nome} #{@sobrenomes.nome}"
+        @nome_completo = "#{@nome["nome"]} #{@sobrenomes["nome"]}"
 
         render json: @nome_completo
     end
