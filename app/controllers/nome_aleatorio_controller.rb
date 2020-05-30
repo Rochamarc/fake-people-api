@@ -10,7 +10,7 @@ class NomeAleatorioController < ApplicationController
         #@nome_completo = "#{@nome.nome} #{@sobrenomes.nome}"
         
         # Teste
-        puts @nome, @sobrenome
+        puts @nome["nome"], @sobrenome
         
         render json: { "Nome": @nome, "Sobrenome": @sobrenome } 
     end
