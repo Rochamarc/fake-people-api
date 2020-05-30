@@ -12,6 +12,11 @@ class NomeAleatorioController < ApplicationController
         # Teste
         # puts @nome["nome"], @sobrenome["nome"}
         
-        render json: { "Nome": @nome + " " + @sobrenome } 
+        # Teste
+        nome_c = @nome["nome"]
+        nome_c.concat(" ")
+        nome_c.concat(@sobrenome["nome"])
+        
+        render json: { "Nome": nome_c } 
     end
 end
