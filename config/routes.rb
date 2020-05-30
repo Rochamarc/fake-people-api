@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   resources :nome_aleatorio do
     collection do 
-       match 'category/:nacionalidade', to: 'nome_aleatorio#category', via: :get
+      match 'category/:nacionalidade', to: 'nome_aleatorio#category', via: :get
      end
   end
 
@@ -10,13 +10,13 @@ Rails.application.routes.draw do
   
   resources :sobrenomes do 
     collection do 
-      get 'category'
+      match 'category/:nacionalidade', to: 'sobrenomes#category', via: :get
     end
   end
   
   resources :nome_proprios do 
     collection do
-      get 'category'
+      match 'category/:nacionalidade', to: 'nome_proprios#category', via: :get
     end
   end
   
