@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
 
-  resources :nome_aleatorio
+  resources :nome_aleatorio do 
+    collection do 
+      get 'category'
+    end
+  end
   
   resources :sobrenomes do 
     collection do 
