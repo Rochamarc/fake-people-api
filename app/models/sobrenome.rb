@@ -1,2 +1,0 @@
-class Sobrenome < ApplicationRecord
-end
