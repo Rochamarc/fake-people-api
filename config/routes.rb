@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :last_names
+  resources :first_names
   resources :nome_aleatorio do
     collection do 
       match 'category/:nacionalidade', to: 'nome_aleatorio#category', via: :get
