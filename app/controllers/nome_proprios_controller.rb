@@ -16,7 +16,7 @@ class NomePropriosController < ApplicationController
   def category
     @nomes = NomeProprio.where(nacionalidade: params[:nacionalidade])
     
-    render json: @nomes.as_json(only: [:nome]) 
+    render json: @nomes 
   end
 
   # POST /nome_proprios

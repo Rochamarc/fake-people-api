@@ -16,7 +16,7 @@ class SobrenomesController < ApplicationController
   def category
     @sobrenomes = Sobrenome.where(nacionalidade: params[:nacionalidade])
     
-    render json: @sobrenomes.as_json(only: [:nome]) 
+    render json: @sobrenomes
   end
 
   # POST /sobrenomes
