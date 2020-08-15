@@ -1,15 +1,9 @@
 class RandomNamesController < ApplicationController
   def index
-    first_name = FirstName.all.sample
-    last_name = LastName.all.sample 
+    @first_name = FirstName.all.sample
+    @last_name = LastName.all.sample 
 
-    @RandomName = { 
-      name: first_name.name + " " + last_name.name,
-      gender: first_name.gender,
-      nationality: last_name.nationality
-    }
-
-    render json: @RandomName
+    render json: { first_name: @first_name, last_name: @last_name }
 
   end
 end
