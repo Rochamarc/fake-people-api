@@ -3,7 +3,7 @@ class PeopleController < ApplicationController
 
   # GET /people
   def index
-    @people = Person.includes(:ssn, :indentity).all
+    @people = Person.includes(:ssn, :identity).all
 
     render json: @people
   end
