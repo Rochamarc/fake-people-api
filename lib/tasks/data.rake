@@ -1,30 +1,39 @@
 namespace :data do
-  desc "Migrando valores de tabela"
-  task migrate_data: :environment do
+  desc "Populando banco de dados"
+  task populate_data: :environment do
     
-    puts "Buscando nomes no banco de dados"
-    nomes = NomeProprio.all
-
-    puts "Migrando nome_proprio para FirstName"
-    nomes.each do |nome|
-      FirstName.create(
-        name: nome.nome,
-        gender: nome.genero,
-        nationality: nome.nacionalidade,
-      )
+    puts "Criando pessoas"
+    100.times do 
+      Person.create({
+        full_name: Faker::Name.name_with_middle,
+        nationality: Faker::Nation.nationality,
+        birthdate: Faker::Date.between(from: 100.years.ago, to: 2.years.ago)
+      })
     end
 
-    puts "Buscando sobrenomes no banco de dados"
-    sobrenomes = Sobrenome.all 
+    puts "Criando cpf e identidade"
+    people = Person.all
 
-    puts "Migrando de sobrenome para LastName"
-    sobrenomes.each do |sobrenome|
-      LastName.create(
-        name: sobrenome.nome,
-        nationality: sobrenome.nacionalidade
-      )
+    people.each do |person|
+      puts "Criando cpf"
+      Ssn.create({
+        number: Faker::IDNumber.brazilian_citizen_number(formatted: true),
+        person_id: person.id 
+      })
+      
+      last_name = Faker::Name.last_name 
+      
+      puts "Criando identidade"
+      Identity.create({
+        number: Faker::IDNumber.brazilian_id(formatted: true),
+        father: Faker::Name.male_first_name + " " + Faker::Name.middle_name + " " + last_name,
+        mother: Faker::Name.female_first_name + " " + Faker::Name.middle_name + " " + last_name,
+        state: Faker::Address.state,
+        person_id: person.id
+      })
     end
-    
+  
+
   end
 
 end

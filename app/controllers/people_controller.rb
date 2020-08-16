@@ -10,7 +10,7 @@ class PeopleController < ApplicationController
 
   # GET /people/1
   def show
-    render json: @person, include: [:ssn]
+    render json: @person, include: [:ssn, :identity]
   end
 
   # POST /people

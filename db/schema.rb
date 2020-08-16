@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_15_223038) do
+ActiveRecord::Schema.define(version: 2020_08_16_031017) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,28 @@ ActiveRecord::Schema.define(version: 2020_08_15_223038) do
     t.string "nationality"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "identities", force: :cascade do |t|
+    t.string "number"
+    t.string "father"
+    t.string "mother"
+    t.string "state"
+    t.bigint "person_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["person_id"], name: "index_identities_on_person_id"
+  end
+
+  create_table "indetities", force: :cascade do |t|
+    t.string "number"
+    t.string "father"
+    t.string "mother"
+    t.string "state"
+    t.bigint "person_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["person_id"], name: "index_indetities_on_person_id"
   end
 
   create_table "last_names", force: :cascade do |t|
@@ -46,5 +68,7 @@ ActiveRecord::Schema.define(version: 2020_08_15_223038) do
     t.index ["person_id"], name: "index_ssns_on_person_id"
   end
 
+  add_foreign_key "identities", "people"
+  add_foreign_key "indetities", "people"
   add_foreign_key "ssns", "people"
 end
