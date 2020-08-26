@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :profiles
   resources :people
   resources :random_names, only: :index # Somente permite um metodo 
   resources :last_names
