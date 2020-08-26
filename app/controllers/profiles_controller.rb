@@ -1,5 +1,8 @@
 class ProfilesController < ApplicationController
-  before_action :set_profile, only: [:show, :update, :destroy]
+  before_action :set_profile, only: [:update, :destroy]
+  before_action :set_show, only: [:show]
+
+  before_action :authenticate_user!, except: [:index, :show]
 
   # GET /profiles
   def index
@@ -16,6 +19,8 @@ class ProfilesController < ApplicationController
   # POST /profiles
   def create
     @profile = Profile.new(profile_params)
+    @user = User.find_by(email: request.headers["uid"])
+    @profile.user_id = @user.id 
 
     if @profile.save
       render json: @profile, status: :created, location: @profile
@@ -41,11 +46,16 @@ class ProfilesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_profile
+      puts ">>>>>>>> #{request;headers}"
+      @profile = Profile.find_by("email" => request.headers["uid"])
+    end
+
+    def set_show 
       @profile = Profile.find(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.
     def profile_params
-      params.require(:profile).permit(:name, :nationality, :birthdate)
+      # params.require(:profile).permit(:name, :nationality, :birthdate, :user_id)
     end
 end
