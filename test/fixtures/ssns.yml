@@ -2,8 +2,8 @@
 
 one:
   number: MyString
-  person: one
+  user: one
 
 two:
   number: MyString
-  person: two
+  user: two

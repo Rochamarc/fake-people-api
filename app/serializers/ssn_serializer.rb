@@ -1,5 +1,4 @@
 class SsnSerializer < ActiveModel::Serializer
   attributes :id, :number
-
-  # belongs_to :person
+  belongs_to :user
 end
