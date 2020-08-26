@@ -5,11 +5,11 @@ one:
   father: MyString
   mother: MyString
   state: MyString
-  person: one
+  user: one
 
 two:
   number: MyString
   father: MyString
   mother: MyString
   state: MyString
-  person: two
+  user: two
