@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
+  resources :identities
+  resources :ssns
   mount_devise_token_auth_for 'User', at: 'auth'
 
   resources :profiles
-  resources :people
+  # patch '/profiles', to: "profiles#update", as: 'profile_edit_path' # Esta merda nao esta funcionndo
+  
   resources :random_names, only: :index # Somente permite um metodo 
   resources :last_names
   resources :first_names
