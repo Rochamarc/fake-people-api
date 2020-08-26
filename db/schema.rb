@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_26_190519) do
+ActiveRecord::Schema.define(version: 2020_08_26_200519) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,21 +28,10 @@ ActiveRecord::Schema.define(version: 2020_08_26_190519) do
     t.string "father"
     t.string "mother"
     t.string "state"
-    t.bigint "person_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["person_id"], name: "index_identities_on_person_id"
-  end
-
-  create_table "indetities", force: :cascade do |t|
-    t.string "number"
-    t.string "father"
-    t.string "mother"
-    t.string "state"
-    t.bigint "person_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["person_id"], name: "index_indetities_on_person_id"
+    t.index ["user_id"], name: "index_identities_on_user_id"
   end
 
   create_table "last_names", force: :cascade do |t|
@@ -66,14 +55,16 @@ ActiveRecord::Schema.define(version: 2020_08_26_190519) do
     t.date "birthdate"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
   create_table "ssns", force: :cascade do |t|
     t.string "number"
-    t.bigint "person_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["person_id"], name: "index_ssns_on_person_id"
+    t.index ["user_id"], name: "index_ssns_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -106,7 +97,7 @@ ActiveRecord::Schema.define(version: 2020_08_26_190519) do
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
 
-  add_foreign_key "identities", "people"
-  add_foreign_key "indetities", "people"
-  add_foreign_key "ssns", "people"
+  add_foreign_key "identities", "users"
+  add_foreign_key "profiles", "users"
+  add_foreign_key "ssns", "users"
 end
