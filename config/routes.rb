@@ -11,7 +11,13 @@ Rails.application.routes.draw do
       resources :last_names
       resources :first_names
     end
+
+    namespace :v2 do
+      resources :profiles
+    end
   end
+
+
 
   mount_devise_token_auth_for 'User', at: 'auth'
   
