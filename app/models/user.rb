@@ -10,4 +10,5 @@ class User < ActiveRecord::Base
   has_one :profile
   has_one :ssn
   has_one :identity
+  has_many :posts
 end
