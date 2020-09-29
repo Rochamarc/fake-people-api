@@ -43,8 +43,21 @@ namespace :data do
         "user_id": user.id
       )
     end
-  
-
   end
+
+  desc "Populando a tabela de posts"
+  task populate_posts: :environment do 
+    p "Criado posts"
+    1000.times do |count|
+      post = Post.create!(
+        "title": Faker::Books::Lovecraft.sentence,
+        "body": Faker::Lorem.sentence,
+        "likes": rand(0..1000),
+        "user_id": rand(1..100)
+      )
+    end
+    p "Posts criados com sucesso!"
+  end
+    
 
 end

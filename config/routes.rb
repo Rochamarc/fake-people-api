@@ -13,6 +13,8 @@ Rails.application.routes.draw do
     end
 
     namespace :v2 do
+      resources :posts
+      
       resources :profiles
     end
   end
