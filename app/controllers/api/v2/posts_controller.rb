@@ -7,7 +7,7 @@ module Api
       def index
         @posts = Post.all
 
-        render json: @posts.sort_by{ |el| el[:likes]}.reverse
+        render json: @posts.page(params[:page]).per(20)
       end
 
       # GET /posts/1

@@ -7,7 +7,7 @@ module Api
       def index
         @profiles = Profile.all
       
-        render json: @profiles
+        render json: @profiles.page(params[:page]).per(10)
       end
     
       # GET /profiles/1
